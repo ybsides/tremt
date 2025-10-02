@@ -1,0 +1,65 @@
+{
+  "@id": "/Plone",
+  "@type": "Plone Site",
+  "UID": "plone_site_root",
+  "allow_discussion": null,
+  "blocks": {
+    "26fda16e-4978-443f-988d-627ce6d6b668": {
+      "@type": "image",
+      "align": "center",
+      "alt": "View",
+      "image_field": "image",
+      "size": "l",
+      "url": "resolveuid/490b9a188005467e84ca81c2746e344b"
+    },
+    "5f31e9e4-173f-4ec1-ab48-64e9e2789b76": {
+      "@type": "title"
+    },
+    "e5ace182-3746-472c-ad81-696425a2b161": {
+      "@type": "slate",
+      "plaintext": "Bem-vindo ao site de Treinamento",
+      "value": [
+        {
+          "children": [
+            {
+              "text": "Bem-vindo ao site de Treinamento"
+            }
+          ],
+          "type": "h2"
+        }
+      ]
+    }
+  },
+  "blocks_layout": {
+    "items": [
+      "5f31e9e4-173f-4ec1-ab48-64e9e2789b76",
+      "e5ace182-3746-472c-ad81-696425a2b161",
+      "26fda16e-4978-443f-988d-627ce6d6b668"
+    ]
+  },
+  "contributors": [],
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "expires": null,
+  "exportimport.constrains": {},
+  "exportimport.conversation": [],
+  "id": "Plone",
+  "is_folderish": true,
+  "items_total": 1,
+  "language": "##DEFAULT##",
+  "lock": {
+    "locked": false,
+    "stealable": true
+  },
+  "review_state": null,
+  "rights": "",
+  "subjects": [],
+  "title": "Yuri Barros @ Plone",
+  "type_title": "Plone Site",
+  "workflow_history": {},
+  "working_copy": null,
+  "working_copy_of": null
+}
