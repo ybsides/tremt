@@ -5,9 +5,7 @@ on:
     paths:
       - "backend/**"
       - "frontend/**"
-      - ".github/workflows/backend.yml"
-      - ".github/workflows/frontend.yml"
-      - ".github/workflows/main.yml"
+      - ".github/workflows/*.yml"
       - "devops/**"
   workflow_dispatch:
 
@@ -54,7 +52,9 @@ jobs:
         image-name-prefix: ${{ needs.config.outputs.image-name-prefix }}
         image-name-suffix: varnish
     if: ${{ needs.config.outputs.varnish == 'true' }}
-
+    permissions:
+      contents: read
+      packages: write
   report:
     name: "Final report"
     if: ${{ always() }}
