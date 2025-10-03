@@ -1,6 +1,6 @@
 # tremt.site
 
-Treinamento de DevOps utilizando o Plone 6
+Treinamento de DevOps utilizando o Plone 6 para o TRE-MT
 
 ## Features
 
