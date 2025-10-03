@@ -55,6 +55,35 @@ jobs:
     permissions:
       contents: read
       packages: write
+
+  deploy:
+    if: ${{ needs.config.outputs.acceptance == 'true' && (always() && !contains(needs.*.result, 'failure')) && github.ref == 'refs/heads/main' }}
+    needs:
+      - config
+      - backend
+      - frontend
+    runs-on: ubuntu-latest
+    environment: ${{ needs.config.outputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to cluster
+        uses: kitconcept/docker-stack-deploy@v1.2.0
+        with:
+          registry: "ghcr.io"
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          remote_host: ${{ secrets.DEPLOY_HOST }}
+          remote_port: ${{ secrets.DEPLOY_PORT }}
+          remote_user: ${{ secrets.DEPLOY_USER }}
+          remote_private_key: ${{ secrets.DEPLOY_SSH }}
+          stack_file: devops/stacks/${{ needs.config.outputs.environment }}.yml
+          stack_name: ${{ needs.config.outputs.stack-name }}
+          stack_param: ${{ github.ref_name }}
+          env_file: ${{ secrets.ENV_FILE }}
+          deploy_timeout: 480
+
   report:
     name: "Final report"
     if: ${{ always() }}
@@ -64,6 +93,7 @@ jobs:
       - backend
       - frontend
       - varnish
+      - deploy
     steps:
       - name: Write report
         run: |
@@ -74,3 +104,4 @@ jobs:
           echo '| backend | ${{ needs.backend.result }} |' >> $GITHUB_STEP_SUMMARY
           echo '| frontend | ${{ needs.frontend.result }} |' >> $GITHUB_STEP_SUMMARY
           echo '| varnish | ${{ needs.varnish.result }} |' >> $GITHUB_STEP_SUMMARY
+          echo '| Deploy | ${{ needs.deploy.result }} |' >> $GITHUB_STEP_SUMMARY
