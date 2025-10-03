@@ -14,7 +14,7 @@ GIT_FOLDER=$(CURRENT_DIR)/.git
 PROJECT_NAME=tremt
 STACK_NAME=tremt-ybsides-tangrama-com-br
 
-VOLTO_VERSION=$(shell cat frontend/mrs.developer.json | python -c "import sys, json; print(json.load(sys.stdin)['core']['tag'])")
+VOLTO_VERSION=$(shell cat frontend/mrs.developer.json | python3 -c "import sys, json; print(json.load(sys.stdin)['core']['tag'])")
 PLONE_VERSION=$(shell cat backend/version.txt)
 
 # We like colors
